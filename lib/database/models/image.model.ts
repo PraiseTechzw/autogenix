@@ -1,11 +1,12 @@
+
+// Image Model
 import { Document, Schema, model, models } from "mongoose";
 
-// IImage interface that extends Mongoose Document
 export interface IImage extends Document {
   title: string;
   transformationType: string;
   publicId: string;
-  secureUrl: string; 
+  secureUrl: string;
   width?: number;
   height?: number;
   config?: object; 
@@ -13,16 +14,11 @@ export interface IImage extends Document {
   aspectRatio?: string;
   color?: string;
   prompt?: string;
-  author: {
-    _id: string;
-    firstName: string;
-    lastName: string;
-  }
+  author: string;  // ObjectId reference
   createdAt?: Date;
   updatedAt?: Date;
 }
 
-// Image schema
 const ImageSchema = new Schema(
   {
     title: { type: String, required: true },
@@ -38,10 +34,10 @@ const ImageSchema = new Schema(
     prompt: { type: String },
     author: { type: Schema.Types.ObjectId, ref: 'User', required: true },  // Author is required
   },
-  { timestamps: true }  // Automatically adds createdAt and updatedAt
+  { timestamps: true }
 );
 
-// Create or export the Image model
 const Image = models?.Image || model('Image', ImageSchema);
-
 export default Image;
+
+
