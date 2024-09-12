@@ -13,10 +13,14 @@ interface NodeJSGlobal {
   mongoose?: MongooseConnection;
 }
 
+// Disable the ESLint rule for this specific line
+/* eslint-disable prefer-const */
 let cached: MongooseConnection = (global as NodeJSGlobal).mongoose || {
   conn: null,
   promise: null,
 };
+/* eslint-enable prefer-const */
+
 
 export const connectToDatabase = async (): Promise<Mongoose> => {
   if (cached.conn) return cached.conn;
