@@ -1,4 +1,4 @@
-import { SignIn, SignUp } from '@clerk/nextjs'
+import { SignIn } from '@clerk/nextjs'
 import React from 'react'
 
 function SignInPage() {
